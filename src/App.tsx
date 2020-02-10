@@ -16,12 +16,29 @@ const App: React.FC<{}>  = () =>  {
   const[result, setSearch] = React.useState('')
 
   const handleChange = (event:any):void=>{
-     return setSearch(event.target.value)
+    return setSearch(event.target.value)
+  
   }
   
   const handleValue=(value:string)=>{
+    
       return (x:string)=> x.toLowerCase().includes(value.toLowerCase())
   }
+
+ const lengthOfResult = state.filter(handleValue(result)).length
+
+ const resultReturn = 
+ state.filter(handleValue(result)).map((k:string,v:number)=><button key={v}  id={k}
+ onClick={()=>setButton({value:k, show:{display:"inline"}}
+ )
+
+}
+>{k}</button>
+
+)
+
+
+
 
  React.useEffect(()=>{
     async function fetchDogBreeds(){ 
@@ -54,15 +71,15 @@ const App: React.FC<{}>  = () =>  {
       
       
         </div>
-      
-    
+        <div className="messages">
+        {lengthOfResult !==0 ? `results ${lengthOfResult}`  : "No Breed Matches Found" }
+        </div>
+        
       <div className="buttondivs"> 
-      {state.filter(handleValue(result)).map((k,v)=><button key={v}  id={k}
-             onClick={()=>setButton({value:k, show:{display:"inline"}}
-             )
-
-            }
-      >{k}</button>)}
+      {
+       result.length === 0 ? resultReturn : resultReturn.slice(0,12)
+      
+      }
       </div>
      
     
@@ -73,9 +90,11 @@ const App: React.FC<{}>  = () =>  {
       <div>
    
      </div>
-    
-     </>
+   
+          
 
+     </>
+  
   
   )
 }

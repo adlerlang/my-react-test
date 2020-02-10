@@ -40,7 +40,7 @@ const Images : React.FC<{image:string, show:Object}> = (props)=>{
     
    {state.loading ?<div>loading...</div> :
      
-     state.data.map((k:string,v:number)=><img alt="k" key={v} src={k}></img>)
+     state.data.map((k:string,v:number)=><img alt={k} key={v} src={k}></img>)
 
    }
 
